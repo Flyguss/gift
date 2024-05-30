@@ -1,0 +1,13 @@
+{% extends "squelette.twig" %}
+{% block content %}
+<div class="container">
+    <h1>{{ libelle }}</h1>
+    <div class="data">
+        <p><span>ID:</span> {{ id }}</p>
+        <p><span>Libellé:</span> {{ libelle }}</p>
+        <p><span>Description:</span> {{ description }}</p>
+    </div>
+    <a href="{{ url_for('CategorieById' , {'id' : cat_id})  }}">Retour à la Categorie</a>
+    <a href="{{ url_for('ListePrestation') }}">Retour à la liste des Prestations</a>
+</div>
+{% endblock %}

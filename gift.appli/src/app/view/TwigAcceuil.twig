@@ -1,0 +1,15 @@
+
+
+    {% extends "squelette.twig"  %}
+
+    {% block content %}
+
+        <ul>
+
+            <li><a href="{{ url_for('Categorie') }}">Catégorie</a></li>
+            <li><a href="{{ url_for('ListePrestation') }}">Prestation</a></li>
+            <li><a href="{{ url_for('BoxGet') }}">Box</a></li>
+
+        </ul>
+
+    {% endblock %}
