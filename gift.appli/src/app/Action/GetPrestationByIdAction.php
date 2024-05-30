@@ -46,9 +46,6 @@ class GetPrestationByIdAction extends AbstractAction {
 
             $p = $this->catalogue->getPrestationById($queryId);
             $view = Twig::fromRequest($rq);
-            foreach ($p as $o) {
-                echo $o ;
-            }
             return $view->render($rs , $this->template , $p);
 
 
