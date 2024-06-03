@@ -53,6 +53,16 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
+    public function getPrestationsWithCategories(): array
+    {
+        try {
+            return Prestation::with('categorie')->get()->toArray();
+        } catch (ModelNotFoundException $e) {
+            throw new PrestationNotFoundException();
+        }
+
+    }
+
     public function createCategory($data) : int {
         $categorie = Categorie::create($data);
         return $categorie->id;

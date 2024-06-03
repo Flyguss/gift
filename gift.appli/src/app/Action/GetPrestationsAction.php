@@ -33,7 +33,7 @@ class GetPrestationsAction extends AbstractAction {
      */
     public function __invoke(Request $rq, Response $rs, array $args): Response{
 
-        $prestations = $this->catalogue->getPrestation() ;
+        $prestations = $this->catalogue->getPrestationsWithCategories() ;
         $view = Twig::fromRequest($rq);
         $data = [
             'presta_list' => $prestations

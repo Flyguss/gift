@@ -1,12 +1,21 @@
 {% extends "squelette.twig" %}
-{% block content %}
-<div class="container">
-    <h1>Liste des Prestations</h1>
-    <ul>
-        {% for c in presta_list %}
-            <li><a href="{{ url_for('Prestation') }}?id={{ c.id }}">{{ c.libelle }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
-{% endblock %}
 
+{% block content %}
+    <div class="container">
+        <h1>Liste des Prestations</h1>
+        <ul class="presta-grid">
+            {% for c in presta_list %}
+                <li>
+                    <a href="{{ url_for('Prestation') }}?id={{ c.id }}">
+                        <img src="img/{{ c.img }}" alt="{{ c.libelle }}">
+                        <div class="presta-details">
+                            <p>{{ c.libelle }}</p>
+                            <p>Tarif: {{ c.tarif }} €</p>
+                            <p>Catégorie: {{ c.categorie.libelle }}</p>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -16,11 +16,13 @@ header {
     text-align: center;
     font-size: 24px;
 }
+
 nav {
     background-color: #fff;
     padding: 10px;
     text-align: center;
 }
+
 nav a {
     text-decoration: none;
     color: #4c59af;
@@ -40,15 +42,18 @@ nav a {
     margin: 0 10px;
     transition: background-color 0.3s, color 0.3s;
 }
+
 nav a:hover {
     background-color: #4c59af;
     color: #fff;
 }
+
 #main {
     flex: 1;
     padding: 20px;
     text-align: center;
 }
+
 footer {
     background-color: #4c59af;
     color: #fff;
@@ -60,6 +65,7 @@ ul {
     list-style: none;
     padding: 0;
 }
+
 li {
     margin: 10px 0;
 }
@@ -73,6 +79,7 @@ a {
     transition: background-color 0.3s, color 0.3s;
     display: inline-block;
 }
+
 a:hover {
     background-color: #4c59af;
     color: #fff;
@@ -83,6 +90,7 @@ label {
     margin-bottom: 5px;
     font-weight: bold;
 }
+
 input[type="text"],
 textarea {
     width: 100%;
@@ -93,6 +101,7 @@ textarea {
     text-align: center;
 
 }
+
 
 .toggle-button {
 
@@ -121,8 +130,9 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 button:hover {
-    background-color: #4c59af;
+    background-color: #3b47a0;
 }
 
 .data {
@@ -132,10 +142,85 @@ button:hover {
     border-left: 5px solid #4c59af;
     border-radius: 4px;
 }
+
 .data p {
     margin: 10px 0;
 }
+
 .data span {
     font-weight: bold;
     color: #555;
+}
+
+/* Css prestations */
+ul.presta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 0;
+}
+
+ul.presta-grid li {
+    background-color: #fff;
+    padding: 0;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    list-style: none;
+    margin: 0;
+    text-align: center;
+    display: flex;
+
+}
+
+ul.presta-grid li a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+ul.presta-grid li a:hover {
+    background-color: #4c59af;
+    color: #fff;
+    scale: 105%;
+    transition: 0.2s;
+}
+
+ul.presta-grid li a:hover .presta-details {
+    background-color: #4c59af;
+    color: #fff;
+    scale: 105%;
+    transition: 0.2s;
+}
+
+ul.presta-grid li img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.presta-details {
+    margin-top: auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid #ccc;
+    transition: background-color 0.3s, color 0.3s;
+    color: #4c59af;
+}
+
+.presta-details p {
+    margin: 5px 0;
+}
+
+.presta-details p span {
+    font-weight: bold;
 }

@@ -5,9 +5,18 @@
     <h1>La Catégorie {{ id }}</h1>
     <h2>{{ libelle }}</h2>
     <h2>{{ description }}</h2>
-    <ul>
+    <ul class="presta-grid">
         {% for p in prestation %}
-            <li><a href="{{ url_for('Prestation') }}?id={{ p.id }}">{{ p.libelle }}</a></li>
+            <li>
+                <a href="{{ url_for('Prestation') }}?id={{ p.id }}">
+                    <img src="../img/{{ p.img }}" alt="{{ p.libelle }}">
+                    <div class="presta-details">
+                        <p>{{ p.libelle }}</p>
+                        <p>Tarif: {{ p.tarif }} €</p>
+                        <p>Catégorie: {{ p.categorie.libelle }}</p>
+                    </div>
+                </a>
+            </li>
         {% endfor %}
     </ul>
     <br>
