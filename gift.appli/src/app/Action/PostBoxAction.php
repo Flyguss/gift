@@ -16,8 +16,10 @@ class PostBoxAction extends AbstractAction {
         $parsedBody = $rq->getParsedBody();
         $name = htmlspecialchars($parsedBody['name'] ?? '');
         $description = htmlspecialchars($parsedBody['description'] ?? '');
+        $kdo = isset($queryParams['kdo']) ? 'Oui' : 'Non';
+        $message = htmlspecialchars($parsedBody['message'] ?? '');
 
-        $data = ['name' => $name , 'description' => $description];
+        $data = ['name' => $name , 'description' => $description, 'kdo' => $kdo, 'message' => $message];
 
         $view = Twig::fromRequest($rq);
         return $view->render($rs , 'TwigPostBox.twig' , $data);
