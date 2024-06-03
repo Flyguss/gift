@@ -7,6 +7,7 @@ use gift\appli\app\Action\GetCategoriesAction;
 use gift\appli\app\Action\GetCategoriesByIdAction;
 use gift\appli\app\Action\GetPrestationByIdAction;
 use gift\appli\app\Action\GetPrestationsAction;
+use gift\appli\app\Action\InscriptionAction;
 use gift\appli\app\Action\PostBoxAction;
 
 return function (\Slim\App $app) {
@@ -17,6 +18,7 @@ return function (\Slim\App $app) {
     $app->get('/listeprestation', GetPrestationsAction::class)->setName('ListePrestation');
     $app->get('/prestation' , GetPrestationByIdAction::class)->setName('Prestation');
     $app->get('/box/create', GetBoxAction::class)->setName('BoxGet');
+    $app->get('/inscription', InscriptionAction::class)->setName('Inscription');
     $app->post('/box/create', PostBoxAction::class)->setName('BoxPost');
 
 
