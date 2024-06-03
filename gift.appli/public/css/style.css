@@ -33,6 +33,16 @@ nav a {
     transition: background-color 0.3s, color 0.3s;
 }
 
+#Inscription{
+    text-decoration: none;
+    color: #4c59af;
+    border: 1px solid #4c59af;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin: 0 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
 nav a:hover {
     background-color: #4c59af;
     color: #fff;
@@ -88,6 +98,25 @@ textarea {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    text-align: center;
+
+}
+
+
+.toggle-button {
+
+    width: 12%;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+#password {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
 }
 
 button {
