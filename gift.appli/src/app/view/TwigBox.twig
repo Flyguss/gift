@@ -2,12 +2,27 @@
 {% block content %}
     <div class="container">
         <h1>Créer une coffret</h1>
-        <form action="create" method="POST">
+        <form action="{{ url_for('BoxPost') }}" method="POST">
             <label for="name">Nom du coffret:</label>
             <input type="text" id="name" name="name" required>
 
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
+
+            <h2>Prestations ajoutées au coffret</h2>
+            {% if box is empty %}
+                <p>Aucune prestation ajoutée.</p>
+            {% else %}
+                <ul>
+                    {% for item in box %}
+                        <li>
+                            <label>{{ item.prestation.libelle }}</label>
+                            <span for="quantity">Quantité :</span>
+                            <input type="number" name="quantity" id="quantity" min="1" value={{ item.quantity }} required>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
             <label for="kdo">Cadeau:</label>
             <input type="checkbox" id="kdo" name="kdo" onchange="toggleMessageField()">

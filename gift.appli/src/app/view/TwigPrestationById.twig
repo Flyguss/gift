@@ -1,14 +1,19 @@
 {% extends "squelette.twig" %}
 {% block content %}
-<div class="container">
-    <h1>{{ libelle }}</h1>
-    <div class="data">
-        <p><span><img src="img/{{ img }}" alt="{{ libelle }}"></span></p>
-        <p><span>ID:</span> {{ id }}</p>
-        <p><span>Libellé:</span> {{ libelle }}</p>
-        <p><span>Description:</span> {{ description }}</p>
+    <div class="container">
+        <h1>{{ prestation.libelle }}</h1>
+        <div class="data">
+            <p><span><img src="img/{{ prestation.img }}" alt="{{ prestation.libelle }}"></span></p>
+            <p><span>ID:</span> {{ prestation.id }}</p>
+            <p><span>Libellé:</span> {{ prestation.libelle }}</p>
+            <p><span>Description:</span> {{ prestation.description }}</p>
+            <form method="post" action="{{ url_for('add_to_box', { id: prestation.id }) }}">
+                <label for="quantity">Quantité :</label>
+                <input type="number" name="quantity" id="quantity" min="1" value="1" required>
+                <button type="submit">Ajouter au coffret</button>
+            </form>
+        </div>
+        <a href="{{ url_for('CategorieById', { id: prestation.cat_id }) }}">Retour à la Categorie</a>
+        <a href="{{ url_for('ListePrestation') }}">Retour à la liste des Prestations</a>
     </div>
-    <a href="{{ url_for('CategorieById' , {'id' : cat_id})  }}">Retour à la Categorie</a>
-    <a href="{{ url_for('ListePrestation') }}">Retour à la liste des Prestations</a>
-</div>
 {% endblock %}
