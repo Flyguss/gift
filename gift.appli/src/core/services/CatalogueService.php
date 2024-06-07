@@ -4,6 +4,7 @@ namespace gift\appli\core\services;
 
 use gift\appli\core\domain\entites\Categorie;
 use gift\appli\core\domain\entites\Prestation;
+use gift\appli\core\domain\entites\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CatalogueService implements CatalogueServiceInterface {
@@ -70,7 +71,7 @@ class CatalogueService implements CatalogueServiceInterface {
 
     public function modifPrestation($data) : void {
         try {
-            $prestation = Prestation::findOrFail($id);
+            $prestation = Prestation::findOrFail($data['id']);
             $prestation->update($data);
         } catch (ModelNotFoundException $e) {
             throw new PrestationNotFoundException();
@@ -84,6 +85,21 @@ class CatalogueService implements CatalogueServiceInterface {
         } catch (ModelNotFoundException $e) {
             throw new PrestationNotFoundException();
         }
+    }
+
+    public function addUser($email , $password , $role) {
+        $user = new User ;
+        $user->user_id = $email ;
+        $user->password = $password ;
+        $user->role = $role ;
+        $user->save() ;
+    }
+
+    public function getUserByEmail($email){
+
+    return User::where('user_id' , 'like' , $email)->first() ;
+
+
     }
 
 

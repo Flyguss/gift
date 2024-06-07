@@ -1,10 +1,12 @@
 {% extends "squelette.twig" %}
 {% block content %}
 <div class="container">
-    <h1>Inscription</h1>
-    <form action="inscription" method="POST">
+    <h1>Connexion</h1>
+    <form action="connexion" method="POST">
         {% if erreur != null %}
-        <p id="erreurInscription">{{ erreur }}</p>
+        <p id="erreurConnexion">{{ erreur }}</p>
+            <p>{{ password }}</p>
+            <p>{{ passuser }}</p>
         {% endif %}
         <label for="name">Adresse Mail :</label>
         <input type="text" id="name" name="name" required>
@@ -13,7 +15,7 @@
         <textarea id="password" name="password" required></textarea>
 
 
-        <button type="submit">S'inscrire</button>
+        <button type="submit">Se connecter</button>
     </form>
 </div>
     </form>

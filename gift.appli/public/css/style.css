@@ -224,3 +224,9 @@ ul.presta-grid li img {
 .presta-details p span {
     font-weight: bold;
 }
+
+#erreurInscription {
+    background-color: indianred;
+    color: white;
+    padding: 10px;
+}
