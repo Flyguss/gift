@@ -8,6 +8,7 @@
             <li><a href="{{ url_for('CategorieById' , { 'id' : c.id}) }}">{{ c.libelle }}</a></li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('category.create') }}" class="btn-create-category">Créer une nouvelle catégorie</a>
 </div>
 {% endblock %}
 
