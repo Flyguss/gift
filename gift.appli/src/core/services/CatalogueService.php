@@ -2,12 +2,17 @@
 
 namespace gift\appli\core\services;
 
+use Exception;
 use gift\appli\core\domain\entites\Categorie;
 use gift\appli\core\domain\entites\Prestation;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class CatalogueService implements CatalogueServiceInterface {
 
+    /**
+     * @throws CategoryNotFoundException
+     */
     public function getCategories(): array
     {
         try{
@@ -17,6 +22,9 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
+    /**
+     * @throws CategoryNotFoundException
+     */
     public function getCategorieById(string $id): array
     {
         try{
@@ -26,6 +34,9 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
+    /**
+     * @throws PrestationNotFoundException
+     */
     public function getPrestation(): array
     {
         try{
@@ -35,6 +46,9 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
+    /**
+     * @throws PrestationNotFoundException
+     */
     public function getPrestationById(string $id): array
     {
         try{
@@ -44,6 +58,9 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
+    /**
+     * @throws PrestationNotFoundException
+     */
     public function getPrestationsbyCategorie(int $categ_id): array
     {
         try{
@@ -53,6 +70,9 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
+    /**
+     * @throws PrestationNotFoundException
+     */
     public function getPrestationsWithCategories(): array
     {
         try {
@@ -63,11 +83,34 @@ class CatalogueService implements CatalogueServiceInterface {
 
     }
 
-    public function createCategory($data) : int {
-        $categorie = Categorie::create($data);
-        return $categorie->id;
+    /**
+     * @throws Exception
+     */
+    public function createCategory(array $data) : void {
+        $libelle = $data['libelle'];
+        $description = $data['description'];
+
+        $filtered_data = [
+            'libelle' => filter_var($libelle),
+            'description' => filter_var($description)
+        ];
+
+        if ($filtered_data['libelle'] !== $libelle || $filtered_data['description'] !== $description) {
+            throw new \Exception('Invalid data provided');
+        }
+
+        $category = new Categorie();
+        $category->libelle = $filtered_data['libelle'];
+        $category->description = $filtered_data['description'];
+
+
+        $category->save();
     }
 
+
+    /**
+     * @throws PrestationNotFoundException
+     */
     public function modifPrestation($data) : void {
         try {
             $prestation = Prestation::findOrFail($id);
@@ -77,6 +120,9 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
+    /**
+     * @throws PrestationNotFoundException
+     */
     public function setCategoryForPrestation(int $prestationId, int $categoryId) : void {
         try {
             $prestation = Prestation::findOrFail($prestationId);
