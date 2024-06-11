@@ -7,6 +7,7 @@ namespace gift\appli\app\Action;
 use AllowDynamicProperties;
 use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\AuthentificationService;
+use gift\appli\core\services\AuthentificationServiceInterface;
 use gift\appli\core\services\CatalogueService;
 use gift\appli\core\services\CatalogueServiceInterface;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -16,7 +17,7 @@ use Slim\Views\Twig;
 class PostInscriptionAction extends AbstractAction {
 
     private string $template;
-    private AuthentificationService $catalogue ;
+    private AuthentificationServiceInterface $catalogue ;
 
     public function __construct() {
         $this->templateValide = 'TwigPostInscription.twig' ;
