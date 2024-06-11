@@ -31,14 +31,16 @@ class GetPrestationsAction extends AbstractAction {
      * @throws RuntimeError
      * @throws LoaderError
      */
-    public function __invoke(Request $rq, Response $rs, array $args): Response{
+    public function __invoke(Request $rq, Response $rs, array $args): Response {
 
-        $prestations = $this->catalogue->getPrestationsWithCategories() ;
+        $params = $rq->getQueryParams();
+        $sortOrder = $params['sort'] ?? null;
+        $prestations = $this->catalogue->getPrestationsWithCategories($sortOrder);
         $view = Twig::fromRequest($rq);
         $data = [
-            'presta_list' => $prestations
+            'presta_list' => $prestations,
+            'sort' => $sortOrder
         ];
-        return $view->render($rs , $this->template , $data);
-
+        return $view->render($rs, $this->template, $data);
     }
 }

@@ -74,15 +74,20 @@ class CatalogueService implements CatalogueServiceInterface {
     /**
      * @throws PrestationNotFoundException
      */
-    public function getPrestationsWithCategories(): array
+    public function getPrestationsWithCategories(?string $sortOrder = null): array
     {
         try {
-            return Prestation::with('categorie')->get()->toArray();
+            $query = Prestation::with('categorie');
+            if ($sortOrder) {
+                $query->orderBy('tarif', $sortOrder);
+            }
+            return $query->get()->toArray();
         } catch (ModelNotFoundException $e) {
             throw new PrestationNotFoundException();
         }
-
     }
+
+
 
     /**
      * @throws Exception
