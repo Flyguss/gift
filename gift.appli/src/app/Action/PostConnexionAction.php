@@ -57,9 +57,12 @@ class PostConnexionAction extends AbstractAction
 
         $user = $this->authentificationService->getUserByEmail($email);
         if ($user == null || !$this->authentificationService->verifyPassword($password, $user)) {
+            $token = CsrfService::generate();
             $data = [
                 'erreur' => 'Email ou Mot de passe incorrect !',
+                'token' => $token
             ];
+
             return $view->render($rs, $this->templateInvalide, $data);
         }
 

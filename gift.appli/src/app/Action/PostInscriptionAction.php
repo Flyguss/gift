@@ -5,6 +5,7 @@ namespace gift\appli\app\Action;
 
 
 use AllowDynamicProperties;
+use Exception;
 use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\AuthentificationService;
 use gift\appli\core\services\AuthentificationServiceInterface;
@@ -44,8 +45,10 @@ class PostInscriptionAction extends AbstractAction {
         $email = htmlspecialchars($parsedBody['name'] ?? '');
         $password = password_hash( htmlspecialchars($parsedBody['password'] ?? '') , PASSWORD_BCRYPT);
         if (! filter_var($email , FILTER_VALIDATE_EMAIL)){
+            $token = CsrfService::generate();
             $data = [
-                'erreur' => 'Email non conforme !'
+                'erreur' => 'Email ou Mot de passe incorrect !',
+                'token' => $token
             ];
             return $view->render($rs , $this->templateInvalide , $data);
         }
