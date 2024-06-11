@@ -87,20 +87,5 @@ class CatalogueService implements CatalogueServiceInterface {
         }
     }
 
-    public function addUser($email , $password , $role) {
-        $user = new User ;
-        $user->user_id = $email ;
-        $user->password = $password ;
-        $user->role = $role ;
-        $user->save() ;
-    }
-
-    public function getUserByEmail($email){
-
-    return User::where('user_id' , 'like' , $email)->first() ;
-
-
-    }
-
 
 }

@@ -6,6 +6,7 @@
         {% if erreur != null %}
         <p id="erreurInscription">{{ erreur }}</p>
         {% endif %}
+        <input type="hidden" name="csrf_token" value="{{ token }}">
         <label for="name">Adresse Mail :</label>
         <input type="text" id="name" name="name" required>
 

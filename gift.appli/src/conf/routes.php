@@ -6,6 +6,7 @@ use gift\appli\app\Action\GetBoxAction;
 use gift\appli\app\Action\GetCategoriesAction;
 use gift\appli\app\Action\GetCategoriesByIdAction;
 use gift\appli\app\Action\GetConnexionAction;
+use gift\appli\app\Action\GetDeconnexionAction;
 use gift\appli\app\Action\GetPrestationByIdAction;
 use gift\appli\app\Action\GetPrestationsAction;
 use gift\appli\app\Action\GetInscriptionAction;
@@ -26,6 +27,7 @@ return function (\Slim\App $app) {
     $app->post('/inscription' , PostInscriptionAction::class)->setName('InscriptionPost');
     $app->get('/connexion', GetConnexionAction::class)->setName('Connexion');
     $app->post('/connexion' , PostConnexionAction::class)->setName('ConnexionPost');
+    $app->get('/deconnexion', GetDeconnexionAction::class)->setName('Deconnexion');
 
 
 

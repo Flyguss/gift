@@ -5,6 +5,7 @@ namespace gift\appli\app\Action;
 
 
 use AllowDynamicProperties;
+use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\CatalogueService;
 use gift\appli\core\services\CatalogueServiceInterface;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -27,6 +28,17 @@ class PostInscriptionAction extends AbstractAction {
         $view = Twig::fromRequest($rq);
 
         $parsedBody = $rq->getParsedBody();
+
+        if (!isset($parsedBody['csrf_token'])) {
+            throw new Exception('CSRF token missing');
+        }
+
+        try {
+            CsrfService::check($parsedBody['csrf_token']);
+        } catch (Exception $e) {
+            throw new Exception('CSRF validation failed: ' . $e->getMessage());
+        }
+
         $email = htmlspecialchars($parsedBody['name'] ?? '');
         $password = password_hash( htmlspecialchars($parsedBody['password'] ?? '') , PASSWORD_BCRYPT);
         if (! filter_var($email , FILTER_VALIDATE_EMAIL)){
@@ -39,7 +51,7 @@ class PostInscriptionAction extends AbstractAction {
 
         $this->catalogue->addUser($email , $password , 1);
 
-
+        $_SESSION['email'] = $email;
 
         return $view->render($rs , $this->templateValide );
     }
