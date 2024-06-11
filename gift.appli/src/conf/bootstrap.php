@@ -17,6 +17,11 @@ $twig = \Slim\Views\Twig::create(__DIR__ .'\..\app\view',
 $app->add(
     \Slim\Views\TwigMiddleware::create($app, $twig)) ;
 
+$app->addBodyParsingMiddleware();
+
+$twig->getEnvironment()
+    ->addGlobal('session' , $_SESSION);
+
 // Ajouter les middlewares de routage et d'erreur
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, false, false);
