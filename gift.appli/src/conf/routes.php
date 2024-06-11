@@ -27,6 +27,11 @@ return function (\Slim\App $app) {
     $app->post('/prestations/{id}/add', AddToBoxAction::class)->setName('add_to_box');
     $app->get('/box/list', GetListBoxAction::class)->setName('ListeBox');
     $app->get('/liste-coffrets', GetListCoffretAction::class)->setName('ListeCoffrets');
+    $app->get('/categories/create', GetCreateCategoryAction::class)->setName('category.create');
+    $app->post('/categories/create', PostCreateCategoryAction::class);
+    $app->get('/connexion', GetConnexionAction::class)->setName('Connexion');
+    $app->post('/connexion' , PostConnexionAction::class)->setName('ConnexionPost');
+    $app->get('/deconnexion', GetDeconnexionAction::class)->setName('Deconnexion');
 
     return $app;
 };
