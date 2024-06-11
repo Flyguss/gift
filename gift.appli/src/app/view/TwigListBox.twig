@@ -1,0 +1,36 @@
+{% extends "squelette.twig" %}
+{% block content %}
+    <div class="container">
+        <h1>Liste des Box</h1>
+        {% if boxes is empty %}
+            <p>Aucune box trouvée.</p>
+        {% else %}
+            <ul>
+                {% for box in boxes %}
+                    <li>
+                        <h3>{{ box.libelle }}</h3>
+                        <p>Description: {{ box.description }}</p>
+                        <p>Cadeau: {{ box.kdo }}</p>
+                        {% if box.kdo == '1' %}
+                            <p>Message: {{ box.message_kdo }}</p>
+                        {% endif %}
+                        {% if box.prestations is not empty %}
+                            <h4>Prestations dans la box:</h4>
+                            <ul>
+                                {% for prestation in box.prestations %}
+                                    <li>
+                                        <p>Libellé: {{ prestation.libelle }}</p>
+                                        <p>Quantité: {{ prestation.pivot.quantite }}</p>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Aucune prestation dans cette box.</p>
+                        {% endif %}
+                        <br>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

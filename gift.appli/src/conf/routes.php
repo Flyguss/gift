@@ -5,6 +5,8 @@ use gift\appli\app\Action\GetAcceuil;
 use gift\appli\app\Action\GetBoxAction;
 use gift\appli\app\Action\GetCategoriesAction;
 use gift\appli\app\Action\GetCategoriesByIdAction;
+use gift\appli\app\Action\GetListBoxAction;
+use gift\appli\app\Action\GetListCoffretAction;
 use gift\appli\app\Action\GetPrestationByIdAction;
 use gift\appli\app\Action\GetPrestationsAction;
 use gift\appli\app\Action\GetInscriptionAction;
@@ -23,6 +25,8 @@ return function (\Slim\App $app) {
     $app->post('/box/create', PostBoxAction::class)->setName('BoxPost');
     $app->post('/inscription', PostInscriptionAction::class)->setName('InscriptionPost');
     $app->post('/prestations/{id}/add', AddToBoxAction::class)->setName('add_to_box');
+    $app->get('/box/list', GetListBoxAction::class)->setName('ListeBox');
+    $app->get('/liste-coffrets', GetListCoffretAction::class)->setName('ListeCoffrets');
 
     return $app;
 };

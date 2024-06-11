@@ -1,0 +1,34 @@
+{% extends "squelette.twig" %}
+{% block content %}
+    <div class="container">
+        <h1>Liste des Coffrets</h1>
+        {% if coffrets is empty %}
+            <p>Aucun coffret créé pour l'instant.</p>
+        {% else %}
+            <ul>
+                {% for coffret in coffrets %}
+                    <li>
+                        <h2>{{ coffret.libelle }}</h2>
+                        <p><strong>Description:</strong> {{ coffret.description }}</p>
+                        <p><strong>Cadeau:</strong> {{ coffret.kdo }}</p>
+                        <p><strong>Message avec le cadeau:</strong> {{ coffret.message_kdo }}</p>
+                        <h3>Prestations:</h3>
+                        {% if coffret.prestations is empty %}
+                            <p>Aucune prestation ajoutée.</p>
+                        {% else %}
+                            <ul>
+                                {% for prestation in coffret.prestations %}
+                                    <li>
+                                        <span>{{ prestation.libelle }}</span>
+                                        <span>Quantité: {{ prestation.pivot.quantite }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                    <br><br>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

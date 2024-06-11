@@ -1,23 +1,23 @@
 {% extends "squelette.twig" %}
 {% block content %}
     <div class="container">
-        <h1>Validation de la Box</h1>
+        <h1>Affichage des données</h1>
         <div class="data">
             <p><span>Nom de la box:</span> {{ name }}</p>
             <p><span>Description:</span> {{ description }}</p>
             <p><span>Cadeau:</span> {{ kdo }}</p>
-            {% if kdo == 'Oui' %}
-                <p><span>Message avec le cadeau:</span> {{ message }}</p>
-            {% endif %}
-            <h2>Prestations ajoutées</h2>
-            {% if box is empty %}
+            <p><span>Message avec le cadeau:</span> {{ message }}</p>
+        </div>
+        <div class="data">
+            <h2>Prestations dans la box:</h2>
+            {% if prestations is empty %}
                 <p>Aucune prestation ajoutée.</p>
             {% else %}
                 <ul>
-                    {% for item in box %}
+                    {% for prestation in prestations %}
                         <li>
-                            <label>{{ item.prestation.libelle }}</label>
-                            <p>Quantité : {{ item.quantity }}</p>
+                            <label>{{ prestation.libelle }}</label>
+                            <span>Quantité : {{ prestation.pivot.quantite }}</span>
                         </li>
                     {% endfor %}
                 </ul>
