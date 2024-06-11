@@ -2,4 +2,4 @@
 
 Formet Romain
 Durand Quentin
-Becker Doryann
+Becker Doryann chef du groupe
