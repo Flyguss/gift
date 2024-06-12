@@ -34,21 +34,30 @@ class GetCategoriesByIdAction extends AbstractAction {
         $this->template = 'TwigCategorieById.twig' ;
         $this->catalogue = new CatalogueService();
     }
-    public function __invoke(Request $rq, Response $rs, array $args ): Response{
-            $categories =  $this->catalogue->getCategorieById($args['id']);
-            $view = Twig::fromRequest($rq);
-            $prestation = $this->catalogue->getPrestationsbyCategorie($args['id']) ;
-            $data = [
-              'id' =>$categories['id'],
-              'libelle' =>$categories['libelle'],
-              'description' =>$categories['description'],
-              'prestation' => $prestation
-            ];
 
-            return $view->render($rs , $this->template , $data);
+    /**
+     * @throws SyntaxError
+     * @throws CategoryNotFoundException
+     * @throws PrestationNotFoundException
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
+    public function __invoke(Request $rq, Response $rs, array $args): Response {
+        $params = $rq->getQueryParams();
+        $sortOrder = $params['sort'] ?? null;
 
+        $categories = $this->catalogue->getCategorieById($args['id']);
+        $prestation = $this->catalogue->getPrestationsbyCategorie($args['id'], $sortOrder);
 
+        $view = Twig::fromRequest($rq);
+        $data = [
+            'id' => $categories['id'],
+            'libelle' => $categories['libelle'],
+            'description' => $categories['description'],
+            'prestation' => $prestation,
+            'sort' => $sortOrder
+        ];
 
-
+        return $view->render($rs, $this->template, $data);
     }
 }

@@ -5,6 +5,10 @@
     <h1>La Catégorie {{ id }}</h1>
     <h2>{{ libelle }}</h2>
     <h2>{{ description }}</h2>
+    <div class="sort-options">
+        <a href="{{ url_for('CategorieById', { 'id': id }) }}?sort=asc">Tri par prix croissant</a> |
+        <a href="{{ url_for('CategorieById', { 'id': id }) }}?sort=desc">Tri par prix décroissant</a>
+    </div>
     <ul class="presta-grid">
         {% for p in prestation %}
             <li>
