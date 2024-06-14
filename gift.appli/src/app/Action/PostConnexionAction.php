@@ -53,6 +53,7 @@ class PostConnexionAction extends AbstractAction
 
         $email = htmlspecialchars($parsedBody['name'] ?? '');
         $password = $parsedBody['password'] ?? '';
+        $user_id = htmlspecialchars($parsedBody['user_id'] ?? '');
 
 
         $user = $this->authentificationService->getUserByEmail($email);
@@ -68,6 +69,7 @@ class PostConnexionAction extends AbstractAction
 
         // Mettre l'email en session
         $_SESSION['email'] = $email;
+        $_SESSION['user_id'] = $user_id;
 
         return $view->render($rs, $this->templateValide);
     }

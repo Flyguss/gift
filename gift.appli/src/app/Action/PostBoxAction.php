@@ -20,7 +20,6 @@ class PostBoxAction extends AbstractAction
         $existingBoxId = $parsedBody['existing_box'] ?? null;
         $quantities = $parsedBody['quantities'] ?? [];
 
-        session_start();
         foreach ($quantities as $key => $quantity) {
             if (isset($_SESSION['box'][$key])) {
                 $_SESSION['box'][$key]['quantity'] = (int)$quantity;
@@ -48,7 +47,7 @@ class PostBoxAction extends AbstractAction
 
         $sessionBox = $_SESSION['box'] ?? [];
         foreach ($sessionBox as $item) {
-            $newBox->prestations()->attach($item['prestation']->id, ['quantite' => $item['quantity']]);
+            $newBox->prestations()->attach($item['prestation'], ['quantite' => $item['quantity']]);
         }
 
         $data = [

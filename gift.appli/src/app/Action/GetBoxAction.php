@@ -11,10 +11,12 @@ class GetBoxAction extends AbstractAction
 {
     public function __invoke(Request $rq, Response $rs, array $args): Response
     {
-        session_start();
+
         $box = $_SESSION['box'] ?? [];
 
-        $existingBoxes = Box::all();
+        $create = '2024-05-14 13:28:00';
+
+        $existingBoxes = Box::with('prestations')->where('created_at', $create)->get();
 
         $view = Twig::fromRequest($rq);
         return $view->render($rs, 'TwigBox.twig', ['box' => $box, 'existing_boxes' => $existingBoxes]);

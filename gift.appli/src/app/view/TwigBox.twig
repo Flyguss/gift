@@ -9,10 +9,10 @@
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
 
-            <label for="existing_box">Sélectionner une box existante:</label>
-            <select id="existing_box" name="existing_box">
-                <option value="">-- Sélectionner une box --</option>
-                {% for box in existing_boxes %}
+            <label for="departement">Sélectionner une box existante:</label>
+            <select id="departement" name="departement">
+                <option value="">-- Sélectionner un département --</option>
+                {% for box in departements %}
                     <option value="{{ box.id }}">{{ box.libelle }}</option>
                 {% endfor %}
             </select>
@@ -22,7 +22,7 @@
                 <p>Aucune prestation ajoutée.</p>
             {% else %}
                 <ul>
-                    {% for item in box %}
+                    {% for key, item in box %}
                         <li>
                             <label>{{ item.prestation.libelle }}</label>
                             <span for="quantity">Quantité :</span>
