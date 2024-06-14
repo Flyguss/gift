@@ -53,7 +53,7 @@ class PostConnexionAction extends AbstractAction
 
         $email = htmlspecialchars($parsedBody['name'] ?? '');
         $password = $parsedBody['password'] ?? '';
-        $user_id = htmlspecialchars($parsedBody['user_id'] ?? '');
+        $user_id = $this->authentificationService->getUserByEmail($email)->id;
 
 
         $user = $this->authentificationService->getUserByEmail($email);

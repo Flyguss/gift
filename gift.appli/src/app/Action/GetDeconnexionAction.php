@@ -14,6 +14,7 @@ class GetDeconnexionAction extends AbstractAction {
 
         $view = Twig::fromRequest($rq);
         unset($_SESSION['email']);
+        unset($_SESSION['user_id']);
         return $view->render($rs , 'TwigDeconnexion.twig' );
 
     }

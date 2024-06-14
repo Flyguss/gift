@@ -14,7 +14,13 @@ class GetListCoffretAction extends AbstractAction
 
         $userId = $_SESSION['user_id'] ?? null;
 
-        $coffrets = Box::with('prestations')->where('createur_id' ,$userId)->get();
+        if($userId != null) {
+            $coffrets = Box::with('prestations')->where('createur_id', 'like' ,$userId)->get();
+        }else {
+            $coffrets = [] ;
+        }
+
+
 
         $view = Twig::fromRequest($rq);
         return $view->render($rs, 'TwigListCoffret.twig', ['coffrets' => $coffrets]);
