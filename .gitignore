@@ -6,3 +6,6 @@ vendor/
 
 # Ignorer tous les fichiers avec l'extension .ini
 *.ini
+
+# Fichier .env
+*.env
