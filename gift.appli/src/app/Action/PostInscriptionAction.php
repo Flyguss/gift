@@ -44,6 +44,8 @@ class PostInscriptionAction extends AbstractAction {
 
         $email = htmlspecialchars($parsedBody['name'] ?? '');
         $password = password_hash( htmlspecialchars($parsedBody['password'] ?? '') , PASSWORD_BCRYPT);
+        $user_id = $this->authentificationService->getUserByEmail($email)->id;
+
         if (! filter_var($email , FILTER_VALIDATE_EMAIL)){
             $token = CsrfService::generate();
             $data = [
@@ -57,6 +59,7 @@ class PostInscriptionAction extends AbstractAction {
         $this->catalogue->addUser($email , $password , 1);
 
         $_SESSION['email'] = $email;
+        $_SESSION['user_id'] = $user_id;
 
         return $view->render($rs , $this->templateValide );
     }
