@@ -18,9 +18,9 @@ Pour installer l'application sur n'importe quel machine, il faut  :
   - docker ps -a
     
 - Entrer dans le navigateur l'url :
-  http://localhost:40069 : Accéder au site internet
-  http://localhost:40072 : Accéder à la base de donné
-  http://localhost:40070 : A l'api
+  - http://localhost:40069 : Accéder au site internet
+  - http://localhost:40072 : Accéder à la base de donné
+  - http://localhost:40070 : A l'api
 
 - Pour l'api, il faut compléter l'url par :
   - /api/categories : pour accéder à la liste des catégories
