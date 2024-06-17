@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-#  httpd:
-#   image: nginx:latest
-#    volumes:
-#      - ./html:/usr/share/nginx/html
-#    ports:
-#      - "40073:80"
-#    networks:
-#      - gift.net
+  #  httpd:
+  #   image: nginx:latest
+  #    volumes:
+  #      - ./html:/usr/share/nginx/html
+  #    ports:
+  #      - "40073:80"
+  #    networks:
+  #      - gift.net
 
   web:
     image: canals/php:latest
@@ -37,7 +37,7 @@ services:
       - sql
 
   sql:
-    image: mysql:latest
+    image: mariadb:latest
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -49,13 +49,10 @@ services:
     networks:
       - gift.net
 
-  myadmin:
-    image: phpmyadmin/phpmyadmin
+  adminer:
+    image: adminer
     ports:
-      - "40072:80"
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
+      - "40072:8080"
     networks:
       - gift.net
 
