@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+#  httpd:
+#   image: nginx:latest
+#    volumes:
+#      - ./html:/usr/share/nginx/html
+#    ports:
+#      - "40073:80"
+#    networks:
+#      - gift.net
+
+  web:
+    image: canals/php:latest
+    ports:
+      - "40069:80"
+    volumes:
+      - ./gift.appli/public:/var/www/html
+      - ./gift.appli/src:/var/www/src
+    working_dir: /var/www/src
+    networks:
+      - gift.net
+    depends_on:
+      - sql
+
+  api:
+    image: canals/php:latest
+    ports:
+      - "40070:80"
+    volumes:
+      - ./gift.api/public:/var/www/html
+      - ./gift.api/src:/var/www/src
+    working_dir: /var/www/src
+    networks:
+      - gift.net
+    depends_on:
+      - sql
+
+  sql:
+    image: mariadb:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "40071:3306"
+    networks:
+      - gift.net
+
+  adminer:
+    image: adminer
+    ports:
+      - "40072:8080"
+    networks:
+      - gift.net
+
+networks:
+  gift.net:
+    driver: bridge
