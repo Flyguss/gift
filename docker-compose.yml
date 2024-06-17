@@ -37,7 +37,7 @@ services:
       - sql
 
   sql:
-    image: mariadb:latest
+    image: mysql:latest
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
