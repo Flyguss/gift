@@ -52,9 +52,10 @@ services:
   myadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "40072:8080"
+      - "40072:80"
     environment:
       PMA_HOST: db
+      PMA_PORT: 3306
     networks:
       - gift.net
 
