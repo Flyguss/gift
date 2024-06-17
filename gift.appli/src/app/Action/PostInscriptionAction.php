@@ -44,7 +44,7 @@ class PostInscriptionAction extends AbstractAction {
 
         $email = htmlspecialchars($parsedBody['name'] ?? '');
         $password = password_hash( htmlspecialchars($parsedBody['password'] ?? '') , PASSWORD_BCRYPT);
-        $user_id = $this->authentificationService->getUserByEmail($email)->id;
+        $user_id = $this->catalogue->getUserByEmail($email)->id;
 
         if (! filter_var($email , FILTER_VALIDATE_EMAIL)){
             $token = CsrfService::generate();
