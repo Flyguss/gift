@@ -2,15 +2,10 @@
 
 namespace gift\appli\app\Action;
 
-
-
-use AllowDynamicProperties;
 use Exception;
 use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\AuthentificationService;
 use gift\appli\core\services\AuthentificationServiceInterface;
-use gift\appli\core\services\CatalogueService;
-use gift\appli\core\services\CatalogueServiceInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -18,6 +13,9 @@ use Slim\Views\Twig;
 class PostInscriptionAction extends AbstractAction {
 
     private string $template;
+
+    private string $templateValide;
+    private string $templateInvalide;
     private AuthentificationServiceInterface $catalogue ;
 
     public function __construct() {
@@ -44,6 +42,7 @@ class PostInscriptionAction extends AbstractAction {
 
         $email = htmlspecialchars($parsedBody['name'] ?? '');
         $password = password_hash( htmlspecialchars($parsedBody['password'] ?? '') , PASSWORD_BCRYPT);
+        $this->catalogue->addUser($email , $password , 1);
         $user_id = $this->catalogue->getUserByEmail($email)->id;
 
         if (! filter_var($email , FILTER_VALIDATE_EMAIL)){
@@ -56,7 +55,7 @@ class PostInscriptionAction extends AbstractAction {
         }
 
 
-        $this->catalogue->addUser($email , $password , 1);
+
 
         $_SESSION['email'] = $email;
         $_SESSION['user_id'] = $user_id;
