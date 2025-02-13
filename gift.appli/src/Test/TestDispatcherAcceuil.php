@@ -13,6 +13,7 @@ class TestDispatcherAcceuil extends TestCase {
         $app = require_once __DIR__ . '/../conf/bootstrap.php';
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/');
         $response = $app->handle($request);
+        $path = $_SERVER['REQUEST_URI'];
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
     }
